@@ -12,7 +12,7 @@ For ReTesting:
 ```
 python3 ReTesting.py
 ```
-After it, the results are in the ```NewThres/``` folder.
+After it, the results are in the ```NewThres/xxx-xxx-retest``` folder (```finalscore.txt```). 
 
 # Dependenices
 ```
