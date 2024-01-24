@@ -1,51 +1,18 @@
-# CAT (Improving Machine Translation Systems via Isotopic Replacement)
+# FairMT (Fairness Testing of Machine Translation Systems)
 
-Machine translation plays an essential role in people’s daily international communication. However, machine translation systems are far from perfect. To tackle this problem, researchers have proposed several approaches to testing machine translation. A promising trend among these approaches is to use word replacement, where only one word in the original sentence is replaced with another word to form a sentence pair. However, precise control of the impact of word replacement remains an outstanding issue in these approaches. 
-
-To address this issue, we propose CAT, a novel word-replacement-based approach, whose basic idea is to identify word replacement with controlled impact (referred to as isotopic replacement). To achieve this purpose, we use a neural-based language model to encode the sentence context, and design a neural-network-based algorithm to evaluate context-aware semantic similarity between two words. Furthermore, similar to TransRepair, a state-of-the-art word-replacement-based approach, CAT also provides automatic fixing of revealed bugs without model retraining. 
-
-Our evaluation on Google Translate and Transformer indicates that CAT achieves significant improvements over TransRepair. In particular, 1) CAT detects seven more types of bugs than TransRepair; 2) CAT detects 129% more translation bugs than TransRepair; 3) CAT repairs twice more bugs than TransRepair, many of which may bring serious consequences if left unfixed; and 4) CAT has better efficiency than TransRepair in input generation (0.01s v.s. 0.41s) and comparable efficiency with TransRepair in bug repair (1.92s v.s. 1.34s).
-
-
-The main file tree of CAT
-
-```
-.
-├── Labeled data
-│   ├── RQ1 Test Input Generation
-│   ├── RQ2 Bug Detection
-│   ├── RQ3 Bug Repair
-│   └── Extended Analysis
-├── TS
-├── MutantGen-Test.py
-├── MutantGen-Repair.py
-├── Repair.py
-├── Testing.py
-├── NewThres
-│   ├── TestGenerator-NMT
-│   └── TestGenerator-NMTRep
-└── NMT_zh_en0-8Mu
-    ├── padTrans
-    └── repair-new
-```
-
-The manual assessment results are in the ```Labeled data``` folder.
+Machine translation is integral to international communication and extensively employed in diverse human-related applications. Despite remarkable progress, fairness issues persist within current machine translation systems. In this paper, we propose FairMT, an automated fairness testing approach tailored for machine translation systems. FairMT operates on the assumption that translations of semantically similar sentences, containing protected attributes from distinct demographic groups, should maintain comparable meanings. It comprises three key steps: (1) test input generation, producing inputs covering various demographic groups; (2) test oracle generation, identifying potential unfair translations based on semantic similarity measurements; and (3) regression, discerning genuine fairness issues from those caused by low-quality translation. Leveraging FairMT we conduct an empirical study on three leading machine translation systems—Google Translate, T5, and Transformer.
 
 For Testing:
 ```
 python3 Testing.py
 ```
-After it, the results are in the ```NMT_zh_en0-8Mu/padTrans``` folder.
+After it, the results are in the ```NMT_zh_en0-8Mu/``` folder.
 
-For Repair:
+For ReTesting:
 ```
-python3 Repair.py
+python3 ReTesting.py
 ```
-After it, the results are in the ```TS/quickstart0/repair-NEW``` folder.
-
-# Data
-
-The ```LookUpTable.txt``` used in ```NMT_zh_en_0-8Mu/padTrans``` and ```NMT_zh_en_0-8Mu/repair-new``` is available at https://drive.google.com/file/d/1fjGpryzGohla0ZA4u7KDgRJeAHegy0A1/view?usp=sharing
+After it, the results are in the ```NewThres/``` folder.
 
 # Dependenices
 ```
